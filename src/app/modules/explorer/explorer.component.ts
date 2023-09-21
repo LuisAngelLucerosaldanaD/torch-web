@@ -5,6 +5,7 @@ import {ExplorerService} from "@app/core/services/explorer/explorer.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {GetMimeTypeOfBase64} from "@app/core/utils/validations/validations";
 import {Prediction} from "@app/core/models/response";
+import {JsonEditorOptions} from "ang-jsoneditor";
 
 @Component({
   selector: 'app-explorer',
@@ -17,16 +18,19 @@ export class ExplorerComponent implements OnInit, OnDestroy {
 
   public fileName: string = '';
   public fileSize: string = '';
-  public accept: string = '.pdf, .jpg, .png';
+  public accept: string = '.jpg, .png';
   public isBlockPage: boolean = false;
   private file!: File;
   public imageResult: string = '';
   public resultJSON: Prediction[] = [];
+  public editorOptions: JsonEditorOptions = new JsonEditorOptions();
 
   constructor(
     private _messageService: ToastService,
     private _explorerService: ExplorerService
   ) {
+    this.editorOptions.modes = ['view'];
+    this.editorOptions.expandAll = true;
   }
 
   ngOnDestroy(): void {
@@ -49,13 +53,13 @@ export class ExplorerComponent implements OnInit, OnDestroy {
   }
 
   public getPredictions(): void {
-    this.isBlockPage = true;
 
     if (!this.file) {
       this._messageService.add({type: 'warning', message: 'Debe cargar la imagen a analizar', life: 5000});
       return;
     }
 
+    this.isBlockPage = true;
     const formData = new FormData();
     formData.append('img-encoding', this.file);
 

@@ -7,6 +7,8 @@ import {UiModule} from "@app/core/ui/ui.module";
 import {HttpClientModule} from "@angular/common/http";
 import {ToastService} from "@app/core/ui/services/toast/toast.service";
 import {ExplorerService} from "@app/core/services/explorer/explorer.service";
+import {NgxJsonViewerModule} from "ngx-json-viewer";
+import {NgJsonEditorModule} from "ang-jsoneditor";
 
 
 @NgModule({
@@ -19,7 +21,9 @@ import {ExplorerService} from "@app/core/services/explorer/explorer.service";
     ReactiveFormsModule,
     UiModule,
     HttpClientModule,
-    NgOptimizedImage
+    NgOptimizedImage,
+    NgxJsonViewerModule,
+    NgJsonEditorModule
   ],
   providers: [
     ToastService,
