@@ -24,6 +24,7 @@ export class ExplorerComponent implements OnInit, OnDestroy {
   public imageResult: string = '';
   public resultJSON: Prediction[] = [];
   public editorOptions: JsonEditorOptions = new JsonEditorOptions();
+  public imgPreview: string = '';
 
   constructor(
     private _messageService: ToastService,
@@ -46,6 +47,7 @@ export class ExplorerComponent implements OnInit, OnDestroy {
     this.fileName = '';
     this.fileSize = '';
     if (file) {
+      this.imgPreview = URL.createObjectURL(file);
       this.fileName = file.name;
       this.fileSize = Number(file.size) > 0 ? ((Number(file.size) / 10485760)).toFixed(3) : '0';
       this.file = file;

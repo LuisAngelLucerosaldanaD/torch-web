@@ -33,6 +33,9 @@
               <span class="t-body text-zc-600">{{fileSize ? fileSize + ' mb' : '-'}}</span>
             </div>
           </div>
+          <div class="w-full flex flex-wrap gap-4" *ngIf="imgPreview !== ''">
+            <img [src]="imgPreview" alt="img preview" style="height: auto; width: 100%">
+          </div>
           <div class="w-full">
             <button class="b-solid w-full md:w-fit" style="min-width: 120px" (click)="getPredictions()">
               Obtener una predicción
